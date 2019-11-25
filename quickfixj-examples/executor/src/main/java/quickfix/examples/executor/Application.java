@@ -23,16 +23,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.ConfigError;
 import quickfix.DataDictionaryProvider;
-import quickfix.DoNotSend;
 import quickfix.FieldConvertError;
 import quickfix.FieldNotFound;
 import quickfix.FixVersions;
-import quickfix.IncorrectDataFormat;
 import quickfix.IncorrectTagValue;
 import quickfix.LogUtil;
 import quickfix.Message;
 import quickfix.MessageUtils;
-import quickfix.RejectLogon;
 import quickfix.Session;
 import quickfix.SessionID;
 import quickfix.SessionNotFound;
@@ -61,6 +58,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class Application extends quickfix.MessageCracker implements quickfix.Application {
     private static final String DEFAULT_MARKET_PRICE_KEY = "DefaultMarketPrice";
     private static final String ALWAYS_FILL_LIMIT_KEY = "AlwaysFillLimitOrders";
@@ -97,7 +95,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
         }
     }
 
-    private void initializeValidOrderTypes(SessionSettings settings) throws ConfigError, FieldConvertError {
+    private void initializeValidOrderTypes(SessionSettings settings) throws ConfigError {
         if (settings.isSetting(VALID_ORDER_TYPES_KEY)) {
             List<String> orderTypes = Arrays
                     .asList(settings.getString(VALID_ORDER_TYPES_KEY).trim().split("\\s*,\\s*"));
@@ -120,20 +118,18 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     public void toAdmin(quickfix.Message message, SessionID sessionID) {
     }
 
-    public void toApp(quickfix.Message message, SessionID sessionID) throws DoNotSend {
+    public void toApp(quickfix.Message message, SessionID sessionID) {
     }
 
-    public void fromAdmin(quickfix.Message message, SessionID sessionID) throws FieldNotFound, IncorrectDataFormat,
-            IncorrectTagValue, RejectLogon {
+    public void fromAdmin(quickfix.Message message, SessionID sessionID) {
     }
 
-    public void fromApp(quickfix.Message message, SessionID sessionID) throws FieldNotFound, IncorrectDataFormat,
-            IncorrectTagValue, UnsupportedMessageType {
+    public void fromApp(quickfix.Message message, SessionID sessionID) throws FieldNotFound, IncorrectTagValue, UnsupportedMessageType {
         crack(message, sessionID);
     }
 
     public void onMessage(quickfix.fix40.NewOrderSingle order, SessionID sessionID) throws FieldNotFound,
-            UnsupportedMessageType, IncorrectTagValue {
+                                                                                           IncorrectTagValue {
         try {
             validateOrder(order);
 
@@ -206,7 +202,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
             if (dataDictionaryProvider != null) {
                 try {
                     dataDictionaryProvider.getApplicationDataDictionary(
-                            getApplVerID(session, message)).validate(message, true);
+                            getApplVerID(session)).validate(message, true);
                 } catch (Exception e) {
                     LogUtil.logThrowable(sessionID, "Outgoing message failed validation: "
                             + e.getMessage(), e);
@@ -220,7 +216,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
         }
     }
 
-    private ApplVerID getApplVerID(Session session, Message message) {
+    private ApplVerID getApplVerID(Session session) {
         String beginString = session.getSessionID().getBeginString();
         if (FixVersions.BEGINSTRING_FIXT11.equals(beginString)) {
             return new ApplVerID(ApplVerID.FIX50);
@@ -230,7 +226,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     }
 
     public void onMessage(quickfix.fix41.NewOrderSingle order, SessionID sessionID) throws FieldNotFound,
-            UnsupportedMessageType, IncorrectTagValue {
+                                                                                           IncorrectTagValue {
         try {
         validateOrder(order);
 
@@ -262,7 +258,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     }
 
     public void onMessage(quickfix.fix42.NewOrderSingle order, SessionID sessionID) throws FieldNotFound,
-            UnsupportedMessageType, IncorrectTagValue {
+                                                                                           IncorrectTagValue {
         try {
         validateOrder(order);
 
@@ -307,7 +303,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     }
 
     public void onMessage(quickfix.fix43.NewOrderSingle order, SessionID sessionID) throws FieldNotFound,
-            UnsupportedMessageType, IncorrectTagValue {
+                                                                                           IncorrectTagValue {
         try {
         validateOrder(order);
 
@@ -342,7 +338,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     }
 
     public void onMessage(quickfix.fix44.NewOrderSingle order, SessionID sessionID) throws FieldNotFound,
-            UnsupportedMessageType, IncorrectTagValue {
+                                                                                           IncorrectTagValue {
         try {
         validateOrder(order);
 
@@ -377,7 +373,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     }
 
     public void onMessage(quickfix.fix50.NewOrderSingle order, SessionID sessionID)
-            throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
+            throws FieldNotFound, IncorrectTagValue {
         try {
             validateOrder(order);
 
