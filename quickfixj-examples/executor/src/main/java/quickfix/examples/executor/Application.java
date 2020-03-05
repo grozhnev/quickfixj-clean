@@ -201,8 +201,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
             DataDictionaryProvider dataDictionaryProvider = session.getDataDictionaryProvider();
             if (dataDictionaryProvider != null) {
                 try {
-                    dataDictionaryProvider.getApplicationDataDictionary(
-                            getApplVerID(session)).validate(message, true);
+                    dataDictionaryProvider.getApplicationDataDictionary(getApplVerID(session)).validate(message, true);
                 } catch (Exception e) {
                     LogUtil.logThrowable(sessionID, "Outgoing message failed validation: "
                             + e.getMessage(), e);

@@ -19,10 +19,14 @@
 
 package quickfix.mina.ssl;
 
+import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
+import org.apache.mina.core.filterchain.IoFilter;
 import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.filterchain.IoFilterChain;
+import org.apache.mina.core.session.AbstractIoSession;
 import org.apache.mina.core.session.IoSession;
 import org.junit.Test;
+import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.ApplicationAdapter;
@@ -438,8 +442,10 @@ public class SSLCertificateTest {
         }
     }
 
+    @SuppressWarnings("removal")
     static abstract class TestConnector {
         private static final Logger LOGGER = LoggerFactory.getLogger(TestConnector.class);
+//        private static final Logger LOGGER = ILoggerFactory.getLogger(TestConnector.class);
         private static final int TIMEOUT_SECONDS = 5;
 
         private final SessionConnector connector;
@@ -452,15 +458,19 @@ public class SSLCertificateTest {
 
         private SessionConnector prepareConnector(SessionSettings sessionSettings) throws ConfigError {
             SessionConnector sessionConnector = createConnector(sessionSettings);
-            sessionConnector.setIoFilterChainBuilder(chain -> chain.addFirst("Exception handler", new IoFilterAdapter() {
-                @Override
-                public void exceptionCaught(NextFilter nextFilter, IoSession session, Throwable cause)
-                        throws Exception {
-                    LOGGER.info("exceptionCaught", cause);
-                    exceptionThrownLatch.countDown();
-                    nextFilter.exceptionCaught(session, cause);
+            sessionConnector.setIoFilterChainBuilder(new DefaultIoFilterChainBuilder(){
+                {
+                    addFirst("Exception handler", new IoFilterAdapter() {
+                        @Override
+                        public void exceptionCaught(NextFilter nextFilter, IoSession session, Throwable cause)
+                                throws Exception {
+                            LOGGER.info("exceptionCaught", cause);
+                            exceptionThrownLatch.countDown();
+                            nextFilter.exceptionCaught(session, cause);
+                        }
+                    });
                 }
-            }));
+            });
 
             return sessionConnector;
         }
@@ -500,7 +510,7 @@ public class SSLCertificateTest {
             Field field = IoSessionResponder.class.getDeclaredField("ioSession");
             field.setAccessible(true);
 
-            return (IoSession) field.get(ioSessionResponder);
+            return (AbstractIoSession) field.get(ioSessionResponder);
         }
 
         public void assertAuthenticated(SessionID sessionID, BigInteger serialNumber) throws Exception {

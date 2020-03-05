@@ -19,6 +19,187 @@
 		<mainClass>quickfix.examples.executor.Executor</mainClass>
 	</properties>
 
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-core -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-core</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-quickfix -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-quickfix</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-all -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-all</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.servicemix.bundles/org.apache.servicemix.bundles.quickfix -->
+		<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.quickfix</artifactId>
+			<version>1.6.4_1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-all -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-all</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-dictgenerator -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-dictgenerator</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix44 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix44</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-codegenerator -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-codegenerator</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-examples-executor -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-examples-executor</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-examples-banzai -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-examples-banzai</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-examples-ordermatch -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-examples-ordermatch</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix42 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix42</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix40 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix40</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix41 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix41</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix50 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix50</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fixt11 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fixt11</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix43 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix43</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages-fix50sp1 -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages-fix50sp1</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-messages -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-messages</artifactId>
+			<version>2.1.1</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.deutschebank.symphony/jackson-quickfix-module -->
+		<dependency>
+			<groupId>com.github.deutschebank.symphony</groupId>
+			<artifactId>jackson-quickfix-module</artifactId>
+			<version>4.55.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-distribution -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-distribution</artifactId>
+			<version>2.1.1</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-examples -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-examples</artifactId>
+			<version>2.1.1</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.fixprotocol.orchestra/session-quickfix -->
+		<dependency>
+			<groupId>io.fixprotocol.orchestra</groupId>
+			<artifactId>session-quickfix</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quickfixj/quickfixj-parent -->
+		<dependency>
+			<groupId>org.quickfixj</groupId>
+			<artifactId>quickfixj-parent</artifactId>
+			<version>2.1.1</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.fabric8.funktion.connector/connector-quickfix -->
+		<dependency>
+			<groupId>io.fabric8.funktion.connector</groupId>
+			<artifactId>connector-quickfix</artifactId>
+			<version>1.1.55</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-quickfix-starter -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-quickfix-starter</artifactId>
+			<version>3.0.0-M4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.fixprotocol.orchestra/model-quickfix -->
+		<dependency>
+			<groupId>io.fixprotocol.orchestra</groupId>
+			<artifactId>model-quickfix</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.fixprotocol.orchestra/repository-quickfix -->
+		<dependency>
+			<groupId>io.fixprotocol.orchestra</groupId>
+			<artifactId>repository-quickfix</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+
+
+
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

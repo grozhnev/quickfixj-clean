@@ -39,6 +39,6 @@ public class ObjectNameFactory {
     }
 
     private boolean isQuotingNeeded(String data) {
-        return data.matches(".*[,=:\"\\*\\?].*");
+        return data.matches(".*[,=:\"*?].*");
     }
 }

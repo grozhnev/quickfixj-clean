@@ -19,6 +19,7 @@
 
 package quickfix.mina;
 
+import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.filterchain.IoFilterChainBuilder;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
@@ -426,7 +427,7 @@ public abstract class SessionConnector implements Connector {
      * @param ioFilterChainBuilder
      * @see IoFilterChainBuilder
      */
-    public void setIoFilterChainBuilder(IoFilterChainBuilder ioFilterChainBuilder) {
+    public void setIoFilterChainBuilder(DefaultIoFilterChainBuilder ioFilterChainBuilder) {
         this.ioFilterChainBuilder = ioFilterChainBuilder;
     }
 
